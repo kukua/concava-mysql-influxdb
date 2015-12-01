@@ -4,6 +4,8 @@ influxdb:
     ports:
         - "8083:8083"
         - "8086:8086"
+    volumes:
+        - ./config/influxdb.toml:/config/config.toml:ro
 mysql:
     image: tutum/mysql:5.6
     env_file: .env
