@@ -150,12 +150,15 @@ export default class Client extends Adapter {
 
 			var series = this.getConfig().influxdb.series
 			var point = data.getData()
+			var config = {}
 
 			// Determine timestamp
 			var timestamp = point.timestamp
 			if ( ! timestamp) timestamp = fallbackDate
+
+			// > Specify time in nanoseconds (https://goo.gl/s60Lhy)
 			timestamp = (new Date(timestamp).getTime() || Date.now()) * 1000000
-			// Specify time in nanoseconds (https://goo.gl/s60Lhy)
+			config.precision = 'ns'
 
 			point.time = timestamp
 			delete point.timestamp
@@ -164,7 +167,7 @@ export default class Client extends Adapter {
 			var tags = { deviceId: data.getDeviceId() }
 
 			// Write point
-			this.getInfluxDBClient().writePoint(series, point, tags, {}, cb)
+			this.getInfluxDBClient().writePoint(series, point, tags, config, cb)
 		})
 	}
 }
