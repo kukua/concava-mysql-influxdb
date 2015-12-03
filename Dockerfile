@@ -1,4 +1,4 @@
-FROM kukuadev/concava:0.1
+FROM kukuadev/concava:0.2
 MAINTAINER Maurits van Mastrigt <maurits@kukua.cc>
 
 WORKDIR /data
