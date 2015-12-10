@@ -22,9 +22,11 @@ The MySQL database is migrated with `tools/database.sql`.
 ## Test
 
 ```bash
-http PUT 'http://<container IP>:3000/v1/sensorData/0000000000000001' \
-	'Authorization: Token abcdef0123456789abcdef0123456789' 'Content-Type: application/octet-stream' \
-	< tools/payload.data
+curl -i -XPUT 'http://<container IP>:3000/v1/sensorData/0000000000000001' \
+	-H 'Authorization: Token abcdef0123456789abcdef0123456789' \
+	-H 'Content-Type: application/octet-stream' \
+	--data-binary @tools/payload.data
+# > Navigate to http://<container IP>:8083 to login to InfluxDB
+# > Authenticate with credentials from .env file
+# > Run query "SELECT * FROM SensorData` on the `concava` (configurable with PRE_CREATE_DB) database
 ```
-
-In these examples [HTTPie](https://github.com/jkbrzt/httpie) is used.
