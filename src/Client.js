@@ -76,6 +76,7 @@ export default class Client extends Adapter {
 				(attributes, cb) => { cb(null, attributes.map((attr) => attr.instance)) },
 			], (err, attributes) => {
 				if (err) return cb(err)
+				if (attributes.length === 0) return cb('No metadata available for device ' + id)
 
 				// Cache result
 				this._cache[id] = { attributes, timestamp: Date.now() }
