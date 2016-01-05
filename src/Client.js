@@ -164,6 +164,10 @@ export default class Client extends Adapter {
 
 			// > Specify time in nanoseconds (https://goo.gl/s60Lhy)
 			timestamp = (new Date(timestamp).getTime() || Date.now()) * 1000000
+
+			// > Timestamp was specified in seconds
+			if (timestamp < 10000000000000000) timestamp *= 1000
+
 			config.precision = 'ns'
 
 			point.time = timestamp
