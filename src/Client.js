@@ -1,7 +1,9 @@
 import mysql from 'mysql'
 import waterfall from 'async-waterfall'
 import map from 'map-async'
+import merge from 'utils-merge'
 import influx from 'influx'
+
 import Adapter from './Adapter'
 import SensorData from '../SensorData'
 import SensorAttribute from '../SensorAttribute'
@@ -9,7 +11,11 @@ import SensorAttribute from '../SensorAttribute'
 export default class Client extends Adapter {
 	constructor (config) {
 		super(config)
-		this._mysql = mysql.createConnection(this.getConfig().mysql)
+		this._mysql = mysql.createPool(merge({
+			waitForConnections: true,
+			connectionLimit: 100,
+			queueLimit: 0, // Disable
+		}, this.getConfig().mysql))
 		this._influxdb = influx(this.getConfig().influxdb)
 		this._cache = {}
 	}
