@@ -1,9 +1,9 @@
 import Client from './src/storage/MySQLAndInfluxDB'
 
 export default {
-    debug: true,
-    port: 3000,
-    client: new Client({
+	debug: true,
+	port: 3000,
+	client: new Client({
 		mysql: {
 			host: 'mysql',
 			user: process.env.MYSQL_USER,
@@ -19,8 +19,8 @@ export default {
 			database: process.env.PRE_CREATE_DB,
 			series: 'SensorData',
 		},
-        timeout: 5000,
-        cacheExpireTime: 15 * 60 * 1000, // 15 minutes
-    }),
-    payloadMaxSize: '512kb',
+		timeout: 5000,
+		cacheExpireTime: 15 * 60 * 1000, // 15 minutes
+	}),
+	payloadMaxSize: '512kb',
 }
