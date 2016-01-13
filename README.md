@@ -10,8 +10,8 @@
 ## How to use
 
 ```bash
-git clone https://github.com/kukua/concava-mysql-influxdb
-cd concava-mysql-influxdb
+git clone https://github.com/kukua/concava-setup-mysql-influxdb
+cd concava-setup-mysql-influxdb
 cp .env.sample .env
 # > Edit configuration in .env
 docker-compose up -d
