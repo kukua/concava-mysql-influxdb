@@ -29,5 +29,5 @@ echo '00000539' | xxd -r -p | \
     -H 'Content-Type: application/octet-stream' --data-binary @-
 # > Navigate to http://<container IP>:8083 to login to InfluxDB
 # > Authenticate with credentials from .env file
-# > Run query "SELECT * FROM SensorData` on the `concava` (configurable with PRE_CREATE_DB) database
+# > Run query "SELECT * FROM SensorData" on the `concava` (configurable with PRE_CREATE_DB) database
 ```

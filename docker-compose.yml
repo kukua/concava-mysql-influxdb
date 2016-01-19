@@ -20,7 +20,6 @@ concava:
         - "3000:3000"
     volumes:
         - ./config/concava.js:/data/config.js:ro
-        - ./src/Client.js:/data/src/storage/MySQLAndInfluxDB.js:ro # Override for testing
     links:
         - influxdb
         - mysql

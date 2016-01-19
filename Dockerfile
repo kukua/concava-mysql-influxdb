@@ -1,9 +1,4 @@
-FROM kukuadev/concava:0.2
+FROM kukuadev/concava:0.4
 MAINTAINER Maurits van Mastrigt <maurits@kukua.cc>
 
-WORKDIR /data
-COPY src/Client.js src/storage/MySQLAndInfluxDB.js
-COPY src/convert.js src/types/convert.js
-
-RUN npm install mysql async-waterfall map-async utils-merge influx@4.0.1
-RUN npm install int24
+RUN npm install concava-adapter-mysql@0.1 concava-adapter-influxdb@0.1
