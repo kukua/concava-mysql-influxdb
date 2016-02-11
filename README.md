@@ -1,6 +1,6 @@
 # ConCaVa with MySQL and InfluxDB
 
-> This setup uses MySQL for authentication and metadata storage and InfluxDB for sensor data storage.
+> This setup uses MySQL for authentication & metadata storage and InfluxDB for sensor data storage.
 
 ## Requirements
 
