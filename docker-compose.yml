@@ -6,7 +6,7 @@ influxdb:
         - "8086:8086"
     volumes:
         - ./config/influxdb.toml:/config/config.toml:ro
-    restart: on-failure:99
+    restart: always
 mysql:
     image: tutum/mysql:5.6
     env_file: .env
@@ -14,7 +14,7 @@ mysql:
         - "3306:3306"
     volumes:
         - ./tools/database.sql:/database.sql:ro
-    restart: on-failure:99
+    restart: always
 concava:
     build: .
     env_file: .env
@@ -25,4 +25,4 @@ concava:
     links:
         - influxdb
         - mysql
-    restart: on-failure:99
+    restart: always
