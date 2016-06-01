@@ -12,7 +12,7 @@
 ```bash
 git clone https://github.com/kukua/concava-setup-mysql-influxdb
 cd concava-setup-mysql-influxdb
-cp .env.sample .env
+cp .env.example .env
 chmod 600 .env
 # > Edit configuration in .env
 docker-compose up -d
