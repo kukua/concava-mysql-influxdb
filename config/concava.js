@@ -1,28 +1,30 @@
-import { auth, metadata } from 'concava-adapter-mysql'
-import { storage } from 'concava-adapter-influxdb'
+const adapter = require('concava-adapter-mysql')
+const storage = require('concava-adapter-influxdb').storage
 
 var config = {
 	host: 'mysql',
-	user: process.env.MYSQL_USER,
-	password: process.env.MYSQL_PASS,
-	database: process.env.ON_CREATE_DB,
+	user: process.env['MYSQL_USER'],
+	password: process.env['MYSQL_PASS'],
+	database: process.env['ON_CREATE_DB'],
 	timeout: 3000, // ms
 }
 
-export default {
+module.exports = {
 	debug: true,
-	port: 3000,
+	// logFile: '/tmp/output.log',
+	// logName: 'concava',
+	// port: 3000,
 	payloadMaxSize: '512kb',
 	auth: {
 		enabled: true,
 		header: 'Authorization',
 		byToken: true,
-		method: auth,
-		config,
+		method: adapter.auth,
+		config: config,
 	},
 	metadata: {
-		method: metadata,
-		config,
+		method: adapter.metadata,
+		config: config,
 	},
 	storage: {
 		method: storage,
@@ -30,9 +32,9 @@ export default {
 			host: 'influxdb',
 			port: 8086,
 			protocol: 'http',
-			username: process.env.ADMIN_USER,
-			password: process.env.INFLUXDB_INIT_PWD,
-			database: process.env.PRE_CREATE_DB,
+			username: process.env['ADMIN_USER'],
+			password: process.env['INFLUXDB_INIT_PWD'],
+			database: process.env['PRE_CREATE_DB'],
 			series: 'SensorData',
 		},
 	},

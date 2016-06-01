@@ -22,6 +22,7 @@ concava:
         - "3000:3000"
     volumes:
         - ./config/concava.js:/data/config.js:ro
+        - ./concava.log:/tmp/output.log
     links:
         - influxdb
         - mysql
